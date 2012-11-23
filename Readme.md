@@ -1,25 +1,25 @@
 Eiffel sample applications around the concept of "bank_account".
 
-Authors: Paul-G. Crismer, Dimitri del Marmol (for awesome-web-atm-js-client)
-License: MIT License
-Copyright: 2012- Paul-G. Crismer <pgcrism@users.sf.net> and others.
-Status: beta 
-Known problems: 
+* Authors: Paul-G. Crismer, Dimitri del Marmol (for awesome-web-atm-js-client)
+* License: MIT License
+* Copyright: 2012- Paul-G. Crismer <pgcrism@users.sf.net> and others.
+* Status: beta
+* Known problems:
   - the javascript clients does not reflect the actual transactions got from the REST server
   - the Resource Handler should better/fully handle errors triggered by the controller.
 
 Projects:
 
-* bank_account
+* bank_account:
 Bank accounts, extended with transaction support
 
-* ev2_awewome_atm
+* ev2_awewome_atm:
 Vision2 GUI
 
-* ewf_awesome_atm
+* ewf_awesome_atm:
 EWF REST Server
 
-* awesome-web-atm-js-client
+* awesome-web-atm-js-client:
 JavaScript client for the EWF REST Server on localhost
 
 Analysis:
