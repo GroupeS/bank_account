@@ -1,0 +1,40 @@
+/*
+ license: MIT license
+ author : Dimitri del Marmol
+ Copyright: 2012- Dimitri del Marmol and others (pgcrism@users.sf.net)
+
+*/
+
+body {
+  margin: 1em;
+}
+
+tbody>tr,td,th {
+  padding: .5em;
+  border: 1px solid grey;
+}
+
+.datetime {
+  font-family: serif;
+  font-style: italic;
+}
+
+.operation {
+  text-transform: capitalize;
+}
+
+.balance {
+  font-weight: bold
+}
+
+.log td {
+  text-align: center;
+}
+
+.Withdraw {
+  color: red;
+}
+
+.Deposit {
+  color: green;
+}
