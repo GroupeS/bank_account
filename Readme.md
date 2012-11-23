@@ -1,4 +1,4 @@
-Eiffel sample applications around the concept of "bank_account".
+Eiffel sample applications around the concept of bank account.
 
 * Authors: Paul-G. Crismer, Dimitri del Marmol (for awesome-web-atm-js-client)
 * License: MIT License
