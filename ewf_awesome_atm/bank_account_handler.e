@@ -134,7 +134,6 @@ feature -- HTTP Methods
 		local
 			h: HTTP_HEADER
 			l_msg : STRING
-			l_location :  STRING
 		do
 			create h.make
 			h.put_content_type_application_json
@@ -174,8 +173,6 @@ feature -- Conversion
 	account_to_json (an_account: BANK_ACCOUNT): JSON_VALUE
 		local
 			l_object: JSON_OBJECT
-			l_string: JSON_STRING
-			l_number: JSON_NUMBER
 		do
 			create l_object.make
 			l_object.put (json_string (an_account.number.number), json_string (k_number))
