@@ -22,7 +22,6 @@ function log(transaction) {
   var template = $("#transaction-template").text();
   var li = _.template(template, transaction, options);
   $('#log').prepend(li);
-  display('amount', transaction.new_amount);
 }
 
 function refreshAccount(account) {
@@ -62,7 +61,9 @@ $(function () {
         amount: value('amount')
       },
       success: function (response) {
-        log(response.response)
+        var transaction = response.response;
+        log(transaction);
+        display('balance', transaction.new_balance);
       }
     });
   });
