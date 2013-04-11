@@ -7,18 +7,17 @@ note
 	revision: "$Revision$"
 
 class
-	BANK_ACCOUNT_HANDLER [C -> WSF_HANDLER_CONTEXT]
+	BANK_ACCOUNT_HANDLER
 
 inherit
-	WSF_HANDLER [C]
-	WSF_RESOURCE_HANDLER_HELPER [C]
+	WSF_URI_HANDLER
+	WSF_RESOURCE_HANDLER_HELPER
 		redefine
 			do_get,
 			do_post
 		end
 
 	SHARED_EJSON
-	REFACTORING_HELPER
 
 create
 	make
@@ -41,10 +40,10 @@ feature -- Access
 
 feature -- execute
 
-	execute (ctx: C; req: WSF_REQUEST; res: WSF_RESPONSE)
+	execute (req: WSF_REQUEST; res: WSF_RESPONSE)
 			-- Execute request handler	
 		do
-			execute_methods (ctx, req, res)
+			execute_methods (req, res)
 		end
 
 feature -- API DOC
@@ -57,7 +56,7 @@ feature -- API DOC
 
 feature -- HTTP Methods
 
-	do_get (ctx: C; req: WSF_REQUEST; res: WSF_RESPONSE)
+	do_get (req: WSF_REQUEST; res: WSF_RESPONSE)
 			-- Using GET to retrieve resource information.
 			-- If the GET request is SUCCESS, we response with
 			-- 200 OK, and a representation of the order
@@ -72,11 +71,11 @@ feature -- HTTP Methods
 				else
 					l_result_json := transactions_to_json (controller.account.transactions)
 				end
-				compute_response_get (ctx, req, res, l_result_json)
+				compute_response_get (req, res, l_result_json)
 			end
 		end
 
-	compute_response_get (ctx: C; req: WSF_REQUEST; res: WSF_RESPONSE; l_value: JSON_VALUE)
+	compute_response_get (req: WSF_REQUEST; res: WSF_RESPONSE; l_value: JSON_VALUE)
 		local
 			h: HTTP_HEADER
 			l_msg : STRING
@@ -94,7 +93,7 @@ feature -- HTTP Methods
 			res.put_string (l_msg)
 		end
 
-	do_post (ctx: C; req: WSF_REQUEST; res: WSF_RESPONSE)
+	do_post (req: WSF_REQUEST; res: WSF_RESPONSE)
 			-- Here the convention is the following.
 			-- POST is used for creation and the server determines the URI
 			-- of the created resource.
@@ -124,13 +123,13 @@ feature -- HTTP Methods
 					l_response.put (create {JSON_NULL}, json_string (k_response))
 				end
 				l_response.put (json_string (last_invalid_post_message), json_string (k_error))
-				compute_response_post (ctx, req, res, l_response)
+				compute_response_post (req, res, l_response)
 			else
-				handle_bad_request_response ("Parameters not valid", ctx, req, res)
+				handle_bad_request_response ("Parameters not valid", req, res)
 			end
 		end
 
-	compute_response_post (ctx: C; req: WSF_REQUEST; res: WSF_RESPONSE; l_value: JSON_VALUE)
+	compute_response_post (req: WSF_REQUEST; res: WSF_RESPONSE; l_value: JSON_VALUE)
 		local
 			h: HTTP_HEADER
 			l_msg : STRING

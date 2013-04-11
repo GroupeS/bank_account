@@ -10,6 +10,9 @@ inherit
 	ANY
 
 	WSF_URI_TEMPLATE_ROUTED_SERVICE
+		redefine
+			execute_default
+		end
 
 	WSF_HANDLER_HELPER
 
@@ -29,7 +32,7 @@ feature {NONE} -- Initialization
 
 	setup_router
 		local
-			bank_account_handler: BANK_ACCOUNT_HANDLER [WSF_URI_TEMPLATE_HANDLER_CONTEXT]
+			bank_account_handler: BANK_ACCOUNT_HANDLER
 		do
 			create account.make (create {BANK_ACCOUNT_NUMBER}.make("123-456789-10"))
 			account.deposit (100)
@@ -39,8 +42,8 @@ feature {NONE} -- Initialization
 			create account_controller.make (account)
 			create bank_account_handler.make (account_controller)
 			--
-			router.map_with_request_methods ("/account/123", bank_account_handler, <<"GET">>)
-			router.map_with_request_methods ("/account/123/transactions", bank_account_handler, <<"GET", "POST">>)
+			router.handle_with_request_methods ("/account/123", bank_account_handler, router.Methods_get)
+			router.handle_with_request_methods ("/account/123/transactions", bank_account_handler, router.Methods_get_post)
 		end
 
 feature -- Execution
@@ -79,5 +82,5 @@ feature -- Constants
 			URI:/account/123 METHOD: GET
 			URI:/account/123/transactions METHOD: GET, POST
 			]"
-			
+
 end

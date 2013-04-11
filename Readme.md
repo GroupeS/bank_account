@@ -26,11 +26,11 @@ Analysis:
 * REST_Bank_Account-en.pdf -- English presentation
 
 Software requirements:
-* EiffelStudio 7.1
+* EiffelStudio 7.2
 * Firefox - Chrome
 
 Installation:
-* Just copy/paste all directories to  "Eiffel User Files\7.1\projects"
+* Just copy/paste all directories to  "Eiffel User Files\7.2\projects"
 * Launch EiffelStudio
 * Open ECF projects through the "Open Project..." Dialog
 * Compile and run the samples
